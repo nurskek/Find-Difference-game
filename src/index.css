@@ -38,7 +38,7 @@ h1 {
     cursor: pointer;
     /* remove cursor later */
 
-    border:1px solid red;    
+    border:2px solid red;    
     border-radius:50%;
 }
 
@@ -54,6 +54,56 @@ h1 {
     cursor: pointer;
     /* remove cursor later */
 
-    border:1px solid red;    
+    border:2px solid red;    
+    border-radius:50%;
+}
+
+.c3 {
+    top: 57.5%;
+    left: 37%;
+    position: absolute;
+    /* background: #fff; */
+    border-radius: 50%;
+    width: 5.7%;
+    height: 6%;
+    /* opacity: 0; */
+    cursor: pointer;
+    /* remove cursor later */
+
+    border:2px solid red;    
+    border-radius:50%;
+}
+
+.c4 {
+    top: 42%;
+    left: 28%;
+    position: absolute;
+    /* background: #fff; */
+    border-radius: 50%;
+    transform: rotate(-25deg);
+    width: 8.5%;
+    height: 5.5%;
+    /* opacity: 0; */
+    cursor: pointer;
+    /* remove cursor later */
+
+    border:2px solid red;    
+    border-radius:50%;
+}
+
+.c5 {
+    top: 37%;
+    left: 61.5%;
+    position: absolute;
+    /* background: #fff; */
+    border-radius: 50%;
+    transform: rotate(25deg);
+    width: 8%;
+    height: 5%;
+    /* opacity: 0; */
+    cursor: pointer;
+    /* remove cursor later */
+
+    border:2px solid red;    
     border-radius:50%;
 }

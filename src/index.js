@@ -18,13 +18,17 @@ import {useState} from 'react'
 function Difference(props){
 
     const [showCircle, setShowCircle] = useState(0)
-    const changeCircle = () => {
+    
+    const changeCircle = (props) => {
         setShowCircle(1)
+        // props.setState = {
+        //     paramVal: "1",
+        // }
     }
 
+
     return(
-        <div style = {{opacity: showCircle}} className={props.className} onClick={(e) => changeCircle()}>
-        </div>
+        <div style = {{opacity: showCircle}} className={props.className} onClick={(e) => changeCircle(props.onClick)}></div>
     )
 }
 
@@ -35,23 +39,52 @@ class App extends React.Component {
         super(props);
         this.state = {
             total: 5,
+            // paramVal: "0",
         }
     }
 
+    // changer() {
+    //     this.setState(prevState => ({
+    //         paramVal: "1",
+    //     }))
+    // }
+
+    totalChanger = () => {
+        let tempo = this.state.total;
+        this.setState({
+            total: tempo - 1
+            }
+        );
+
+        // if(total === 0) {
+        //     return (
+                
+        //     )
+        // }
+    }
+
     render() {
+        // let parVal = this.state.paramVal;
+        let totalNum = this.state.total
+
         return (
             <div className="App">
-                <h1>Find <span id="dif_num">3</span> differences</h1>
+                <h1>Find <span id="dif_num">{totalNum}</span> differences</h1>
                  
                 <div className="row">
-                    <div className="column">
+                    <div className="column" onClick={this.totalChanger}>
                         {/* <div style={{ opacity: ourCircle }} className="circle c1" onClick={(e) => this.rightClick()}></div> */}
-                        <Difference className="circle c1"/>
+                        <Difference  className="circle c1"/>
+                        {/* param={parVal} */}
                         <Difference className="circle c2"/>
+                        <Difference  className="circle c3"/>
+                        <Difference  className="circle c4"/>
+                        <Difference  className="circle c5"/>
                         <img id="img_diff" src={img1} alt="Different image"/>
                     </div>
                     <div className="column">
                         <Difference className="circle c1"/>
+                        {/* param={parVal} */}
                         <Difference className="circle c2"/>
                         <img id="img_orig" src={img2} alt="Original image"/>
                     </div>
