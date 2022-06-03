@@ -13,6 +13,7 @@ function Difference(props){
         if(showCircle === 0) {
             setShowCircle(1)
             props.param()
+            props.op()
         }
     }
 
@@ -27,18 +28,17 @@ function Difference(props){
 
 function Picture(props){
 
-const clickControl = (e) => {
-    props.par(e.clientX, e.clientY)
-    console.log("x coor", e.clientX)
-    console.log("y coor", e.clientY)
-}
-    return(
-        <img 
-            id={props.id} 
-            src={img1} 
-            alt="Different" 
-            onClick={(e)=>clickControl(e)} />
-    )
+    const clickControl = (e) => {
+        props.par(e.clientX, e.clientY)
+        props.op()
+    }
+        return(
+            <img 
+                id={props.id} 
+                src={img1} 
+                alt="Different" 
+                onClick={(e)=>clickControl(e)} />
+        )
 }
 
 class App extends React.Component {
@@ -47,13 +47,27 @@ class App extends React.Component {
         super(props);
         this.myRef = React.createRef();
         this.state = {
-            xOpacity: false,
+            xOpacity: 0,
             total: 5,
             success: false,
             coordinateX: 100,
             coordinateY: 100,
         }
     }
+
+    opacSet = () => {
+        this.setState({
+            xOpacity: 1,
+        })
+    }
+
+    opacSetRight = () => {
+        this.setState({
+            xOpacity: 0,
+        })
+    }
+
+
 
     coordinateSet = (x, y) => {
         const xVal = x
@@ -86,7 +100,7 @@ class App extends React.Component {
         const successVal = this.state.success
         let cX = this.state.coordinateX
         let cY = this.state.coordinateY
-
+        let opac = this.state.xOpacity;
         return (
             <div className="App">
                 {successVal ? (
@@ -100,18 +114,15 @@ class App extends React.Component {
                  
                         <div className="row">
                             <div className="column" >
-                                {/* <div style={{ opacity: ourCircle }} className="circle c1" onClick={(e) => this.rightClick()}></div> */}
-                                <Difference param={this.totalSet} className="circle c1"/>
-                                {/* param={parVal} */}
-                                <Difference param={this.totalSet} className="circle c2"/>
-                                <Difference  param={this.totalSet} className="circle c3"/>
-                                <Difference  param={this.totalSet} className="circle c4"/>
-                                <Difference  param={this.totalSet} className="circle c5"/>
+
+                                <Difference op={this.opacSetRight} param={this.totalSet} className="circle c1"/>
+                                <Difference op={this.opacSetRight} param={this.totalSet} className="circle c2"/>
+                                <Difference op={this.opacSetRight} param={this.totalSet} className="circle c3"/>
+                                <Difference op={this.opacSetRight} param={this.totalSet} className="circle c4"/>
+                                <Difference op={this.opacSetRight} param={this.totalSet} className="circle c5"/>
                                 
-                                <img style={{left: `${cX}px`, top: `${cY}px`}} id="red_cross" src={crossPng} alt="Red cross"></img>
-                                <Picture par={this.coordinateSet} id="img_diff"></Picture>
-                                {/* <img id="img_diff" src={img1} alt="Different" /> */}
-                                {/* <img id="img_diff" src={img1} alt="Different" /> */}
+                                <img style={{left: `${cX}px`, top: `${cY}px`, opacity: `${opac}`}} id="red_cross" src={crossPng} alt="Red cross"></img>
+                                <Picture op={this.opacSet} par={this.coordinateSet} id="img_diff"></Picture>
                             </div>
                             <div className="column">
                                 <img id="img_orig" src={img2} alt="Original"/>
