@@ -6,59 +6,68 @@ import img2 from './pictures/img_original.svg';
 import {useState} from 'react'
 import crossPng from './pictures/red_cross.png'
 
-
-// requirements:
-// 1. the total number of differences is shown (DONE)
-// 2. when user clicks on the difference, it should be highlighted (eg. circled) (DONE)
-// 3. when user clicks on the wrong spot, a red cross should appear. ()
-// 4. when user finds all differences, a success sreen should appear. (DONE)
-
-// better UI, more points
-// use React
-
 function Difference(props){
     const [showCircle, setShowCircle] = useState(0)
-    const [here, setHere] = useState(1)
     
     const changeCircle = (e) => {
-        setShowCircle(1)
-        setHere(0)
-        props.param()
+        if(showCircle === 0) {
+            setShowCircle(1)
+            props.param()
+        }
     }
 
     return(
-        <div style = {{opacity: showCircle}} className={props.className} onClick={(e) => changeCircle(e)}></div>
+        <div 
+            style = {{opacity: showCircle}} 
+            className={props.className} 
+            onClick={(e) => changeCircle(e)}
+        ></div>
     )
 }
 
-// function that show X when clicked
+function Picture(props){
+
+const clickControl = (e) => {
+    props.par(e.clientX, e.clientY)
+    console.log("x coor", e.clientX)
+    console.log("y coor", e.clientY)
+}
+    return(
+        <img 
+            id={props.id} 
+            src={img1} 
+            alt="Different" 
+            onClick={(e)=>clickControl(e)} />
+    )
+}
 
 class App extends React.Component {
 
-    // const [total, setTotal] = useState(5)
     constructor(props) {
         super(props);
         this.myRef = React.createRef();
         this.state = {
+            xOpacity: false,
             total: 5,
             success: false,
-            // paramVal: "0",
+            coordinateX: 100,
+            coordinateY: 100,
         }
     }
 
-    // renderCircle(i) {
-    //     return <Difference value={i} />;
-    //   }
+    coordinateSet = (x, y) => {
+        const xVal = x
+        const yVal = y
+        this.setState({
+            coordinateX: xVal - 29,
+            coordinateY: yVal - 139,
+            }
+        )
+    }
 
-    // changer() {
-    //     this.setState(prevState => ({
-    //         paramVal: "1",
-    //     }))
-    // }
-
-    totalChanger = () => {
+    totalSet = () => {
         let tempo = this.state.total;
-        let tempSuccess = this.state.success;
+        let tempoSuccess = this.state.success;
         this.setState({
             total: tempo - 1
             }
@@ -66,46 +75,46 @@ class App extends React.Component {
 
         if(this.state.total === 1) {
             this.setState({
-                success: !tempSuccess,
+                success: !tempoSuccess,
                 }
             );  
         }
     }
 
     render() {
-        // let parVal = this.state.paramVal;
-        let totalNum = this.state.total
-        const successIf = this.state.success
+        let totalVal = this.state.total
+        const successVal = this.state.success
+        let cX = this.state.coordinateX
+        let cY = this.state.coordinateY
+
         return (
             <div className="App">
-                {successIf ? (
+                {successVal ? (
                     <>
-                        <h1>Success!</h1>
-                        <img src={crossPng}></img>
+                        <h1 id="successText">Success!</h1>
                     </>
-                    
                 ) : (
                     <>
-                        <h1>Find <span id="dif_num">{totalNum}</span> differences</h1>
+                        <h1>Find <span id="dif_num">{totalVal}</span> differences</h1>
+                        <h3>Find out the difference and click on the left picture</h3>
                  
                         <div className="row">
                             <div className="column" >
                                 {/* <div style={{ opacity: ourCircle }} className="circle c1" onClick={(e) => this.rightClick()}></div> */}
-                                <Difference param={this.totalChanger} className="circle c1"/>
+                                <Difference param={this.totalSet} className="circle c1"/>
                                 {/* param={parVal} */}
-                                <Difference param={this.totalChanger} className="circle c2"/>
-                                <Difference  param={this.totalChanger} className="circle c3"/>
-                                <Difference  param={this.totalChanger} className="circle c4"/>
-                                <Difference  param={this.totalChanger} className="circle c5"/>
-                                <img id="img_diff" src={img1} alt="Different image"/>
+                                <Difference param={this.totalSet} className="circle c2"/>
+                                <Difference  param={this.totalSet} className="circle c3"/>
+                                <Difference  param={this.totalSet} className="circle c4"/>
+                                <Difference  param={this.totalSet} className="circle c5"/>
+                                
+                                <img style={{left: `${cX}px`, top: `${cY}px`}} id="red_cross" src={crossPng} alt="Red cross"></img>
+                                <Picture par={this.coordinateSet} id="img_diff"></Picture>
+                                {/* <img id="img_diff" src={img1} alt="Different" /> */}
+                                {/* <img id="img_diff" src={img1} alt="Different" /> */}
                             </div>
                             <div className="column">
-                                {/* <Difference param={this.totalChanger} className="circle c1"/>
-                                <Difference param={this.totalChanger} className="circle c2"/>
-                                <Difference  param={this.totalChanger} className="circle c3"/>
-                                <Difference  param={this.totalChanger} className="circle c4"/>
-                                <Difference  param={this.totalChanger} className="circle c5"/> */}
-                                <img id="img_orig" src={img2} alt="Original image"/>
+                                <img id="img_orig" src={img2} alt="Original"/>
                             </div>
                         </div>
                     </>  
