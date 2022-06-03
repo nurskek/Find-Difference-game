@@ -1,6 +1,5 @@
 body {
     font-family: 'Bebas Neue', sans-serif;
-    /* flex-direction: column; */
     align-items: center;
     justify-content:center;
     height: 90vh;
@@ -40,12 +39,10 @@ h3 {
     top: 4.5%;
     left: 19%;
     position: absolute;
-    /* background: #fff; */
     border-radius: 50%;
     width: 5.5%;
     height: 6.5%;
     cursor: pointer;
-    /* remove cursor later */
 
     border:2px solid red;    
     border-radius:50%;
@@ -55,13 +52,10 @@ h3 {
     top: 59%;
     left: 58.5%;
     position: absolute;
-    /* background: #fff; */
     border-radius: 50%;
     width: 3%;
     height: 4%;
-    /* opacity: 0; */
     cursor: pointer;
-    /* remove cursor later */
 
     border:2px solid red;    
     border-radius:50%;
@@ -71,13 +65,10 @@ h3 {
     top: 57.5%;
     left: 37%;
     position: absolute;
-    /* background: #fff; */
     border-radius: 50%;
     width: 5.7%;
     height: 6%;
-    /* opacity: 0; */
     cursor: pointer;
-    /* remove cursor later */
 
     border:2px solid red;    
     border-radius:50%;
@@ -87,14 +78,11 @@ h3 {
     top: 42%;
     left: 28%;
     position: absolute;
-    /* background: #fff; */
     border-radius: 50%;
     transform: rotate(-25deg);
     width: 8.5%;
     height: 5.5%;
-    /* opacity: 0; */
     cursor: pointer;
-    /* remove cursor later */
 
     border:2px solid red;    
     border-radius:50%;
@@ -104,14 +92,11 @@ h3 {
     top: 37%;
     left: 61.5%;
     position: absolute;
-    /* background: #fff; */
     border-radius: 50%;
     transform: rotate(25deg);
     width: 8%;
     height: 5%;
-    /* opacity: 0; */
     cursor: pointer;
-    /* remove cursor later */
 
     border:2px solid red;    
     border-radius:50%;
@@ -125,15 +110,4 @@ h3 {
 
 #img_diff:hover {
     cursor:pointer;
-}
-
-#but { 
-    background: #fff;
-	color: inherit;
-	border: rgb(151, 184, 233);
-    border-radius: 2%;
-	padding: 2;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
 }
